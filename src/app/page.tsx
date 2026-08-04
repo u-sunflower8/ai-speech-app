@@ -1,65 +1,63 @@
-import Image from "next/image";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function Home() {
+const FEATURES = [
+  { title: "話すスピード", desc: "1分あたりの文字数から、話す速さの傾向がわかります。" },
+  { title: "間の取り方", desc: "無音の回数や長さから、間の取り方の癖がわかります。" },
+  { title: "口癖", desc: "「えー」「あのー」などの口癖の回数がわかります。" },
+  { title: "話の構成・わかりやすさ", desc: "AIが結論・理由・具体例の有無や伝わりやすさを評価します。" },
+];
+
+export default function TopPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="flex-1">
+      <section className="mx-auto max-w-3xl px-6 py-20 text-center">
+        <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+          話すだけで、自分の話し方がわかる。
+        </h1>
+        <p className="mt-4 text-balance text-neutral-600">
+          音声を録音すると、AIが話すスピード、間、口癖、話の構成を分析。
+          <br className="hidden sm:block" />
+          24時間いつでも、自分の話し方を客観的に診断できます。
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Link href="/signup" className={buttonVariants({ size: "lg" })}>
+            無料で診断する
+          </Link>
+          <Link
+            href="/login"
+            className={buttonVariants({ variant: "outline", size: "lg" })}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            ログイン
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-6 pb-20">
+        <h2 className="mb-6 text-center text-lg font-semibold text-neutral-900">
+          診断できる項目
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {FEATURES.map((feature) => (
+            <Card key={feature.title} className="border-neutral-200">
+              <CardContent>
+                <h3 className="font-medium text-neutral-900">{feature.title}</h3>
+                <p className="mt-1 text-sm text-neutral-600">{feature.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <footer className="mx-auto flex max-w-4xl justify-center gap-6 px-6 pb-10 text-sm text-neutral-500">
+        <Link href="/terms" className="hover:underline">
+          利用規約
+        </Link>
+        <Link href="/privacy" className="hover:underline">
+          プライバシーポリシー
+        </Link>
+      </footer>
+    </main>
   );
 }
