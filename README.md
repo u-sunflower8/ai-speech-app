@@ -4,6 +4,8 @@
 
 **Live Demo:** https://ai-speech-app-phi.vercel.app
 
+開発のもとになった要件定義書は [docs/requirements.md](docs/requirements.md) にあります。
+
 ## スクリーンショット
 
 ### トップページ
